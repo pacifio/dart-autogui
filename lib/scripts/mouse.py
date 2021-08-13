@@ -3,11 +3,11 @@ import sys
 import pyautogui as auto
 
 
-class MouseData:
+class Mouse:
 
     @staticmethod
     def get_mouse_pos() -> tuple:
-        x, y = auto.mouseinfo.position()
+        x, y = auto.position()
         data = {
             'x': x,
             'y': y
@@ -15,12 +15,22 @@ class MouseData:
         return json.dumps(data)
 
     @staticmethod
+    def move_to(x: int = 0, y: int = 0, duration: int = 0) -> None:
+        auto.moveTo(x=x, y=y, duration=duration)
+
+    @staticmethod
     def default(): return json.dumps({})
 
 
 if __name__ == "__main__":
     arg = sys.argv
-    if arg[1] == "pos":
-        print(MouseData.get_mouse_pos())
+    command = arg[1]
+
+    if command == "pos":
+        print(Mouse.get_mouse_pos())
+    elif command == "move":
+        x, y, dur = arg[2], arg[3], arg[4]
+        Mouse.move_to(int(x), int(y), int(dur))
+
     else:
-        print(MouseData.default())
+        print(Mouse.default())
