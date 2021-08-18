@@ -14,6 +14,7 @@ class MousePosition {
 }
 
 const _kDefaultTween = "linear";
+const _kDefaultButton = "left";
 
 enum MouseTween {
   linear,
@@ -22,6 +23,12 @@ enum MouseTween {
   easeInOutQuad,
   easeInBounce,
   easeInElastic
+}
+
+enum MouseButton {
+  left,
+  middle,
+  right,
 }
 
 String _mapTween(MouseTween? tween) {
@@ -43,6 +50,20 @@ String _mapTween(MouseTween? tween) {
     }
   } else {
     return _kDefaultTween;
+  }
+}
+
+String _mapButton(MouseButton? button) {
+  if (button != null) {
+    if (button == MouseButton.left) {
+      return _kDefaultButton;
+    } else if (button == MouseButton.right) {
+      return 'right';
+    } else {
+      return _kDefaultButton;
+    }
+  } else {
+    return _kDefaultButton;
   }
 }
 
@@ -84,6 +105,177 @@ class Mouse {
       x.toString(),
       y.toString(),
       duration != null ? duration.inSeconds.toString() : '0',
+    ]);
+  }
+
+  static Future<void> dragTo({
+    required int x,
+    required int y,
+    Duration? duration,
+    MouseTween? tween,
+    MouseButton? button,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'drag_to',
+      x.toString(),
+      y.toString(),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+      _mapButton(button),
+    ]);
+  }
+
+  static Future<void> dragRel({
+    required int x,
+    required int y,
+    Duration? duration,
+    MouseTween? tween,
+    MouseButton? button,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'drag_rel',
+      x.toString(),
+      y.toString(),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+      _mapButton(button),
+    ]);
+  }
+
+  static Future<void> click({
+    required int x,
+    required int y,
+    int clicks = 1,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+    MouseButton? button,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      clicks.toString(),
+      intervals.toString(),
+      _mapButton(button),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+    ]);
+  }
+
+  static Future<void> rightClick({
+    required int x,
+    required int y,
+    int clicks = 1,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      clicks.toString(),
+      intervals.toString(),
+      _mapButton(MouseButton.right),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+    ]);
+  }
+
+  static Future<void> leftClick({
+    required int x,
+    required int y,
+    int clicks = 1,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      clicks.toString(),
+      intervals.toString(),
+      _mapButton(MouseButton.left),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+    ]);
+  }
+
+  static Future<void> middleClick({
+    required int x,
+    required int y,
+    int clicks = 1,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      clicks.toString(),
+      intervals.toString(),
+      _mapButton(MouseButton.middle),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+    ]);
+  }
+
+  static Future<void> doubleClick({
+    required int x,
+    required int y,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+    MouseButton? button,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      2.toString(),
+      intervals.toString(),
+      _mapButton(button),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
+    ]);
+  }
+
+  static Future<void> trippleClick({
+    required int x,
+    required int y,
+    int intervals = 0,
+    Duration? duration,
+    MouseTween? tween,
+    MouseButton? button,
+  }) async {
+    final path = getScriptPath('mouse.py');
+    await Process.run('python3', [
+      path,
+      'click',
+      x.toString(),
+      y.toString(),
+      3.toString(),
+      intervals.toString(),
+      _mapButton(button),
+      duration != null ? duration.inSeconds.toString() : '0',
+      _mapTween(tween),
     ]);
   }
 }

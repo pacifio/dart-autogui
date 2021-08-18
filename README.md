@@ -10,13 +10,13 @@ Mouse functions
 getPosition() ✅
 moveTo() ✅
 moveRel() ✅
-dragTo()
-dragRel()
-click()
-rightClick()
-middleClick()
-doubleClick()
-tripleClick()
+dragTo() ✅
+dragRel() ✅
+click() ✅
+rightClick() ✅
+middleClick() ✅
+doubleClick() ✅
+tripleClick() ✅
 scroll()
 mouseDown()
 mouseUp()
