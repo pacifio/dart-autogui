@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dart_autogui/src/utils.dart';
 
+/// `MousePosition` holds the data for where mouse is
+/// returns `x` and `y` positions on screen
 class MousePosition {
   final int x;
   final int y;
@@ -16,6 +18,8 @@ class MousePosition {
 const _kDefaultTween = "linear";
 const _kDefaultButton = "left";
 
+/// Controller for the mouse tweening
+/// By default `MouseTween.linear` is used in twwn functons
 enum MouseTween {
   linear,
   easeInQuad,
@@ -25,12 +29,14 @@ enum MouseTween {
   easeInElastic
 }
 
+/// Controller for Mouse button
 enum MouseButton {
   left,
   middle,
   right,
 }
 
+/// Internal function that maps tween function into String
 String _mapTween(MouseTween? tween) {
   if (tween != null) {
     if (tween == MouseTween.linear) {
@@ -53,6 +59,7 @@ String _mapTween(MouseTween? tween) {
   }
 }
 
+/// Internal function that maps button controller into String
 String _mapButton(MouseButton? button) {
   if (button != null) {
     if (button == MouseButton.left) {
@@ -67,7 +74,10 @@ String _mapButton(MouseButton? button) {
   }
 }
 
+/// Main `Mouse` object
 class Mouse {
+  /// Get mouse position ,
+  /// returns `Future<MousePosition>`
   static Future<MousePosition> pos() async {
     final path = getScriptPath('mouse.py');
     final data = await Process.run('python3', [path, 'pos']);
@@ -76,6 +86,8 @@ class Mouse {
     return MousePosition(x: pos['x'], y: pos['y']);
   }
 
+  /// Move mouse to a certain position ,
+  /// returns `Future<void>`
   static Future<void> moveTo({
     required int x,
     required int y,
@@ -93,6 +105,8 @@ class Mouse {
     ]);
   }
 
+  /// Move mouse cursor relative to the current mouse position ,
+  /// returns `Future<void>`
   static Future<void> moveRel({
     required int x,
     required int y,
@@ -108,6 +122,8 @@ class Mouse {
     ]);
   }
 
+  /// drags mouse cursor to a certain position ,
+  /// returns `Future<void>`
   static Future<void> dragTo({
     required int x,
     required int y,
@@ -127,6 +143,8 @@ class Mouse {
     ]);
   }
 
+  /// Drag mouse cursor relative to the current mouse position ,
+  /// returns `Future<void>`
   static Future<void> dragRel({
     required int x,
     required int y,
@@ -146,6 +164,8 @@ class Mouse {
     ]);
   }
 
+  /// Clicks on certain position
+  /// returns `Future<void>`
   static Future<void> click({
     required int x,
     required int y,
@@ -169,6 +189,8 @@ class Mouse {
     ]);
   }
 
+  /// Right clicks on certain position
+  /// returns `Future<void>`
   static Future<void> rightClick({
     required int x,
     required int y,
@@ -191,6 +213,8 @@ class Mouse {
     ]);
   }
 
+  /// Left clicks on certain position
+  /// returns `Future<void>`
   static Future<void> leftClick({
     required int x,
     required int y,
@@ -213,6 +237,8 @@ class Mouse {
     ]);
   }
 
+  /// Middle clicks on certain position
+  /// returns `Future<void>`
   static Future<void> middleClick({
     required int x,
     required int y,
@@ -235,6 +261,8 @@ class Mouse {
     ]);
   }
 
+  /// Double clicks on certain position (in right button) ,
+  /// returns `Future<void>`
   static Future<void> doubleClick({
     required int x,
     required int y,
@@ -257,6 +285,8 @@ class Mouse {
     ]);
   }
 
+  /// Triple clicks on certain position (in right button) ,
+  /// returns `Future<void>`
   static Future<void> trippleClick({
     required int x,
     required int y,

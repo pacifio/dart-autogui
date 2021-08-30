@@ -1,6 +1,6 @@
 name: dart_autogui
 description: A desktop automation library built on top of python's pyautogui module
-version: 1.0.0
+version: 0.0.1
 homepage: https://www.github.com/pacifio/dart-autogui
 
 environment:

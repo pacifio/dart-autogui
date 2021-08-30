@@ -2,6 +2,13 @@
 
 Dart autogui is a wrapper around python `autogui` module . You need python , `pyautogui` and `pyscreeze` installed in your computer for this package to work .
 
+## Install
+
+```yaml
+dependencies:
+  dart_autogui: 0.0.1
+```
+
 ## Functions
 
 Mouse functions
@@ -23,3 +30,5 @@ mouseUp()
 onLeftClick()
 onRightClick()
 ```
+
+Keyboard and Screen functions are upcoming features !
