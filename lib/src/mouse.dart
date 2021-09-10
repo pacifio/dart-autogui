@@ -3,6 +3,9 @@ import 'dart:io';
 
 import 'package:dart_autogui/src/utils.dart';
 
+/// Path for mouse.py script
+final mPath = getScriptPath('mouse.py');
+
 /// `MousePosition` holds the data for where mouse is
 /// returns `x` and `y` positions on screen
 class MousePosition {
@@ -79,8 +82,7 @@ class Mouse {
   /// Get mouse position ,
   /// returns `Future<MousePosition>`
   static Future<MousePosition> pos() async {
-    final path = getScriptPath('mouse.py');
-    final data = await Process.run('python3', [path, 'pos']);
+    final data = await Process.run('python3', [mPath, 'pos']);
     final pos = jsonDecode(data.stdout.toString());
 
     return MousePosition(x: pos['x'], y: pos['y']);
@@ -94,9 +96,8 @@ class Mouse {
     Duration? duration,
     MouseTween? tween,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'move_to',
       x.toString(),
       y.toString(),
@@ -112,9 +113,8 @@ class Mouse {
     required int y,
     Duration? duration,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'move_rel',
       x.toString(),
       y.toString(),
@@ -131,9 +131,8 @@ class Mouse {
     MouseTween? tween,
     MouseButton? button,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'drag_to',
       x.toString(),
       y.toString(),
@@ -152,9 +151,8 @@ class Mouse {
     MouseTween? tween,
     MouseButton? button,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'drag_rel',
       x.toString(),
       y.toString(),
@@ -175,9 +173,8 @@ class Mouse {
     MouseTween? tween,
     MouseButton? button,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),
@@ -199,9 +196,8 @@ class Mouse {
     Duration? duration,
     MouseTween? tween,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),
@@ -223,9 +219,8 @@ class Mouse {
     Duration? duration,
     MouseTween? tween,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),
@@ -247,9 +242,8 @@ class Mouse {
     Duration? duration,
     MouseTween? tween,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),
@@ -271,9 +265,8 @@ class Mouse {
     MouseTween? tween,
     MouseButton? button,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),
@@ -295,9 +288,8 @@ class Mouse {
     MouseTween? tween,
     MouseButton? button,
   }) async {
-    final path = getScriptPath('mouse.py');
     await Process.run('python3', [
-      path,
+      mPath,
       'click',
       x.toString(),
       y.toString(),

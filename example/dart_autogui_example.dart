@@ -46,6 +46,25 @@ Future<void> rightClick() async {
       x: 100, y: 100, clicks: 5, tween: MouseTween.easeInQuad);
 }
 
+Future<void> keyboardKeys() async {
+  final data = await Keyboard.keyboardKeys();
+  data.forEach((element) {
+    print(element);
+  });
+}
+
+Future<void> typeWord() async {
+  await Keyboard.typeWord('Adib Mohsin', interval: 0);
+}
+
+Future<void> hotkey() async {
+  await Keyboard.hotKey(['ctrl', 'v']);
+}
+
+Future<void> validateInstall() async {
+  print(await Validate.installed());
+}
+
 void main() async {
-  await rightClick();
+  validateInstall();
 }

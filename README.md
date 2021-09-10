@@ -31,4 +31,10 @@ onLeftClick()
 onRightClick()
 ```
 
-Keyboard and Screen functions are upcoming features !
+Keyboard functions
+
+```dart
+keyboardKeys() ✅
+typeWord() ✅
+hotKey() ✅
+```
