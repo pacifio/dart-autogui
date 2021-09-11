@@ -1,3 +1,5 @@
-## 1.0.0
+## 0.0.1
 
-- Initial version.
+- Partial mouse functions
+- Keyboard functions
+- Null safety

@@ -66,8 +66,17 @@
   <h1 id="dart-autogui">Dart Autogui</h1>
 <p>Dart autogui is a wrapper around python <code>autogui</code> module . You need python , <code>pyautogui</code> and <code>pyscreeze</code> installed in your computer for this package to work .</p>
 <h2 id="install">Install</h2>
+<p>Python packages to install</p>
+<pre class="language-bash"><code class="language-bash">pip3 install pyautogui pyscreeze
+</code></pre>
+<p>Dart install</p>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  dart_autogui: 0.0.1
+  dart_autogui: 0.0.2
+</code></pre>
+<p>Validate your <code>dart_autogui</code> installation</p>
+<pre class="language-dart"><code class="language-dart">print(await Validate.installed());
+// Returns true if all dependencies are installed
+// false if dependencies are not resolved
 </code></pre>
 <h2 id="functions">Functions</h2>
 <p>Mouse functions</p>
@@ -87,7 +96,83 @@ mouseUp()
 onLeftClick()
 onRightClick()
 </code></pre>
-<p>Keyboard and Screen functions are upcoming features !</p>
+<p>Keyboard functions</p>
+<pre class="language-dart"><code class="language-dart">keyboardKeys() ✅
+typeWord() ✅
+hotKey() ✅
+</code></pre>
+<h2 id="example">Example</h2>
+<pre class="language-dart"><code class="language-dart">import 'package:dart_autogui/dart_autogui.dart';
+
+Future&lt;void&gt; pos() async {
+  final position = await Mouse.pos();
+  print("X: ${position.x} , Y: ${position.y}");
+}
+
+Future&lt;void&gt; moveTo() async {
+  await Mouse.moveTo(
+    x: 100,
+    y: 100,
+    duration: Duration(seconds: 5),
+    tween: MouseTween.easeInElastic,
+  );
+}
+
+Future&lt;void&gt; moveRel() async {
+  await Mouse.moveRel(
+    x: 100,
+    y: 100,
+    duration: Duration(seconds: 5),
+  );
+}
+
+Future&lt;void&gt; dragTo() async {
+  await Mouse.dragTo(
+    x: 100,
+    y: 100,
+    duration: Duration(seconds: 5),
+    tween: MouseTween.easeInElastic,
+    button: MouseButton.right,
+  );
+}
+
+Future&lt;void&gt; dragRel() async {
+  await Mouse.dragRel(
+    x: 100,
+    y: 100,
+    duration: Duration(seconds: 2),
+    tween: MouseTween.easeInElastic,
+  );
+}
+
+Future&lt;void&gt; rightClick() async {
+  await Mouse.rightClick(
+      x: 100, y: 100, clicks: 5, tween: MouseTween.easeInQuad);
+}
+
+Future&lt;void&gt; keyboardKeys() async {
+  final data = await Keyboard.keyboardKeys();
+  data.forEach((element) {
+    print(element);
+  });
+}
+
+Future&lt;void&gt; typeWord() async {
+  await Keyboard.typeWord('Adib Mohsin', interval: 0);
+}
+
+Future&lt;void&gt; hotkey() async {
+  await Keyboard.hotKey(['ctrl', 'v']);
+}
+
+Future&lt;void&gt; validateInstall() async {
+  print(await Validate.installed());
+}
+
+void main() async {
+  validateInstall();
+}
+</code></pre>
 </section>
 
 

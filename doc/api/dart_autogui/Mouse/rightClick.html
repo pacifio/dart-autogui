@@ -135,9 +135,8 @@ returns <code>Future&lt;void&gt;</code></p>
   Duration? duration,
   MouseTween? tween,
 }) async {
-  final path = getScriptPath(&#39;mouse.py&#39;);
   await Process.run(&#39;python3&#39;, [
-    path,
+    mPath,
     &#39;click&#39;,
     x.toString(),
     y.toString(),
